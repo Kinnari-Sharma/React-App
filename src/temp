@@ -1,0 +1,125 @@
+import React, { Component } from 'react';
+import './App.css';
+import {Grid, Row, Col} from 'react-bootstrap';
+
+import Header from './components/header';
+import CardInput from './components/add-card';
+import TodoItem from './components/todo-item';
+import {SortableContainer, SortableElement, arrayMove} from 'react-sortable-hoc';
+
+
+
+class App extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      todos: [
+        {id: 0, text: "Make Dinner0", description: "Its a long day and making dinner after it seems to be rather disappointing.", date: Date.now()},
+        {id: 1, text: "Laundry1", description: "Its important to have clean clothes. Therefore, Laundry.", date: Date.now()},
+        {id: 2, text: "React App2", description: "Learn to make a React App.", date: Date.now()},
+        {id: 3, text: "Complete App?3", description: "Did you complete React App?", date: Date.now()},
+        {id: 4, text: "Enjoy4", description: "After you complete your app", date: Date.now()},
+      ],
+      nextId: 5
+    }
+
+    this.addCard = this.addCard.bind(this);
+    this.removeCard = this.removeCard.bind(this);
+    this.setTitle = this.setTitle.bind(this);
+  }
+
+  addCard(){
+    let todos = this.state.todos.slice();
+    let nextId = this.state.nextId;
+    todos.push({id: this.state.nextId, text: "", description: ""});
+    this.setState({
+      todos: todos,
+      nextId: nextId+1,
+      date: Date.now()
+    });
+  }
+
+  removeCard(id){
+    this.setState({
+      todos: this.state.todos.filter((todo, index) => todo.id !== id )
+    })
+  }
+
+  onSortEnd = ({oldIndex, newIndex}) => {
+    console.log("Sort End");
+    console.log(this.state.todos);
+    this.setState({
+      todos: arrayMove(this.state.todos, oldIndex, newIndex),
+    });
+  };
+
+  setTitle(text, id){
+    console.log("Change at: ",id);
+    let todos = this.state.todos.slice();
+    console.log(this.state.todos);
+    todos[id].text = text;
+    console.log(todos)
+    this.setState({
+      todos: todos
+    })
+  }
+
+  render() {
+    return (
+      <div className="App">
+        <Header />
+        <CardInput addCard = {this.addCard}/>
+        <hr />
+        <SortableList items={this.state.todos} onSortEnd={this.onSortEnd} axis={'xy'} removeCard = {this.removeCard} setTitle = {this.setTitle}/>
+      </div>
+    );
+  }
+}
+
+const SortableItem = SortableElement(({value, removeCard, setTitle}) =>
+  <Col sm={3}>
+   <TodoItem todo = {value} key = {value.id} id={value.id} removeCard = {removeCard} setTitle = {setTitle}/>
+  </Col>
+);
+
+const SortableList = SortableContainer(({items, removeCard, setTitle}) => {
+
+  return (
+    <Grid>
+    <Row>
+      {
+        items.map((value, index) => (
+        <SortableItem key={`item-${index}`} index={index} value={value} removeCard = {removeCard} setTitle = {setTitle}/>
+      ))}
+    </Row>
+    </Grid>
+  );
+});
+
+
+export default App;
+
+/*todo-text*/
+
+export default class TodoText extends React.Component{
+  constructor(props){
+    super(props);
+
+    this.state = {
+      text: this.props.text
+    }
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange(e) {
+    this.setState({ text: e.target.value });
+    this.props.setTitle(e.target.value, this.props.id);
+  }
+
+  render() {  
+    return(
+      <input type="text" value={this.state.text}  onChange={this.handleChange} placeholder="Title" className="title"/>
+    );
+  }
+}
