@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default class TodoDesc extends React.Component{
+export default class CardDesc extends React.Component{
 	constructor(props){
 		super(props);
 

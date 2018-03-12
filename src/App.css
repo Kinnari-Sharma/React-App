@@ -1,6 +1,5 @@
 *{
 	box-sizing: border-box;
-
 }
 
 
@@ -20,7 +19,7 @@ hr{
  margin-top: 20px;
 }
 
-.todoWrapper{
+.cardWrapper{
 	border: 1px solid turquoise;
 	border-radius: 5px;
 	padding: 5px;

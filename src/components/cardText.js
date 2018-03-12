@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default class TodoText extends React.Component{
+export default class CardText extends React.Component{
   constructor(props){
     super(props);
 
@@ -16,9 +16,8 @@ export default class TodoText extends React.Component{
   }
 
   render() {  
-    let titles = this.props.todos.map((todo)=>{
-      console.log(todo.text);
-      return todo.text;
+    let titles = this.props.cards.map((card)=>{
+      return card.text;
     });
     return(
       <div>
@@ -26,6 +25,7 @@ export default class TodoText extends React.Component{
         <datalist id="titles">
           {
             titles.map((title, index) => {
+              console.log(title);        
               return <option value={title} key={index}/>;
             })
           }
