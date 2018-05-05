@@ -1,7 +1,7 @@
 import React from 'react';
-import CardItem from './cardItem';
 import { SortableElement } from 'react-sortable-hoc';
 import { Col } from 'react-bootstrap';
+import CardItem from './CardItem';
 
 export const SortableItem = SortableElement(({value, removeCard, setTitle, setDesc, cards}) =>
   <Col sm={3}>

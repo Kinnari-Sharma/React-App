@@ -1,8 +1,7 @@
 import React from 'react';
 import {SortableContainer} from 'react-sortable-hoc';
 import { Grid, Row } from 'react-bootstrap';
-import {SortableItem} from './sortableItem';
-
+import {SortableItem} from './SortableItem';
 
 export const SortableList = SortableContainer(({items, removeCard, setTitle, setDesc, cards}) => {
   return (

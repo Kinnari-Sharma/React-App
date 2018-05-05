@@ -1,6 +1,6 @@
 import React from 'react';
-import CardText from './cardText';
-import CardDesc from './cardDesc';
+import CardText from './CardText';
+import CardDesc from './CardDesc';
 import { Button } from 'react-bootstrap';
 
 export default class CardItem extends React.Component{

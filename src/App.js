@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { arrayMove } from 'react-sortable-hoc';
 
-import CardInput from './components/addCard';
-import DateFilter from './components/dateFilter';
+import CardInput from './components/AddCard';
+import DateFilter from './components/DateFilter';
 import { format_date } from './helpers/format_date';
-import { SortableList } from './components/sortableList';
-import { Header } from './components/header';
+import { SortableList } from './components/SortableList';
+import { Header } from './components/Header';
 import './App.css';
 
 class App extends Component {
@@ -23,21 +23,13 @@ class App extends Component {
       nextId: 5,
       date: null
     }
-
-    this.addCard = this.addCard.bind(this);
-    this.removeCard = this.removeCard.bind(this);
-    this.setTitle = this.setTitle.bind(this);
-    this.setDesc = this.setDesc.bind(this);
-    this.getDate = this.getDate.bind(this);
   }
 
-  
-
-  addCard(){
+  addCard = () => {
     let cards = this.state.cards.slice();
     let nextId = this.state.nextId;
-    for (var i = 0; i < cards.length; i++) {
-      if(cards[i].text === ""){
+     for(let card of cards) {
+      if (card.text === "" ) {
         window.alert("Card Present");
         return;
       }
@@ -49,7 +41,7 @@ class App extends Component {
     });
   }
 
-  removeCard(id){
+  removeCard = (id) => {
     this.setState({
       cards: this.state.cards.filter((card, index) => card.id !== id )
     })
@@ -61,34 +53,34 @@ class App extends Component {
     });
   };
 
-  setTitle(text, id){
+  setTitle = (text, id) => {
     let cards = this.state.cards.slice();
-    for (var i = 0; i < cards.length; i++) {
-      if(cards[i].id === id){
-        cards[i].text = text;
+    for(let card of cards) {
+      if (card.id === id) {
+        card.text = text;
       }
     }
     this.setState({
-      cards: cards
+      cards
     });
   }
 
-  setDesc(desc, id){
+  setDesc = (desc, id) => {
     let cards = this.state.cards.slice();
-    for (var i = 0; i < cards.length; i++) {
-      if(cards[i].id === id){
-        cards[i].description = desc;
+    for(let card of cards){
+      if (card.id === id) {
+        card.description = desc;
       }
     }
     this.setState({
-      cards: cards
+      cards
     });
   }
 
 
-  getDate(date){
+  getDate = (date) => {
     this.setState({
-      date: date
+      date
     });
   }
 
@@ -108,7 +100,7 @@ class App extends Component {
     return (
       <div className="App">
           <Header />
-          <div className="controls">
+          <div>
             <CardInput addCard = {this.addCard} />
             <DateFilter getDate = {this.getDate} />
           </div>
