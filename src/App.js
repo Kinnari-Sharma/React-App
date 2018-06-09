@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { arrayMove } from 'react-sortable-hoc';
+import swal from 'sweetalert'
 
 import CardInput from './components/AddCard';
 import DateFilter from './components/DateFilter';
@@ -28,9 +29,9 @@ class App extends Component {
   addCard = () => {
     let cards = this.state.cards.slice();
     let nextId = this.state.nextId;
-     for(let card of cards) {
+    for(let card of cards) {
       if (card.text === "" ) {
-        window.alert("Card Present");
+        swal("Empty Card Available!");
         return;
       }
     }
@@ -44,13 +45,13 @@ class App extends Component {
   removeCard = (id) => {
     this.setState({
       cards: this.state.cards.filter((card, index) => card.id !== id )
-    })
+    });
   }
 
   onSortEnd = ({oldIndex, newIndex}) => {
     this.setState({
-      cards: arrayMove(this.state.cards, oldIndex, newIndex),
-    });
+      cards: arrayMove(this.state.cards, oldIndex, newIndex)
+    })
   };
 
   setTitle = (text, id) => {
@@ -77,8 +78,7 @@ class App extends Component {
     });
   }
 
-
-  getDate = (date) => {
+  getDate = date => {
     this.setState({
       date
     });

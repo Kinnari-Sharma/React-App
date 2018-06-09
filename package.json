@@ -8,10 +8,11 @@
     "react-autocomplete": "^1.8.1",
     "react-autosuggest": "^9.3.4",
     "react-bootstrap": "^0.32.1",
-    "react-datepicker": "^1.2.2",
+    "react-datepicker": "^1.5.0",
     "react-dom": "^16.2.0",
     "react-scripts": "1.1.1",
-    "react-sortable-hoc": "^0.6.8"
+    "react-sortable-hoc": "^0.6.8",
+    "sweetalert": "^2.1.0"
   },
   "scripts": {
     "start": "react-scripts start",

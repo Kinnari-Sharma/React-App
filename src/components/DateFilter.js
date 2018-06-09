@@ -1,32 +1,30 @@
 import React from 'react';
 import DatePicker from 'react-datepicker';
-
 import 'react-datepicker/dist/react-datepicker.css';
+import { format_date } from '../helpers/format_date';
 
 export default class DateFilter extends React.Component {
 
 	constructor (props) {
-    super(props)
+    super(props);
     this.state = {
       startDate: null
     };
-    this.handleChange = this.handleChange.bind(this);
   }
  
-  handleChange(date) {
+  handleChange = date => {
     this.setState({
       startDate: date
     });
-    if(date!=null){
-    	let d = String(date._d).split(" ");
-    	let formatted_date = d[1]+" "+d[2]+" "+d[3];
-    	this.props.getDate(formatted_date);
-  	}
-    else{
-    	this.props.getDate(date);
-    }
-
+   this.props.getDate(format_date(date));
   }
+
+  clearDate = () => {
+    alert("Hi");
+    this.datepicker.clear();
+    return true;
+  }
+
 
 	render() {
 		return(
@@ -35,11 +33,12 @@ export default class DateFilter extends React.Component {
 	  		onChange={this.handleChange }
 	  		dateFormat="DD/MM/YYYY"
 	  		isClearable={true}
+        // onClearClick={this.clearDate}
 	  		placeholderText="Date Filter"
 	  		className = "date-filter"
-	  		calendarClassName = "calender"
+        clearButtonTitle = "Clear"
+        ref={datePicker => {this.datePicker = datePicker}}
 			/>
-
 		);
 	}
 }
