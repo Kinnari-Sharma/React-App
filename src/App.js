@@ -27,14 +27,13 @@ class App extends Component {
   }
 
   addCard = () => {
-    let cards = this.state.cards.slice();
+    let cards = this.state.cards;
     let nextId = this.state.nextId;
-    for(let card of cards) {
+    for(let card of cards)
       if (card.text === "" ) {
         swal("Empty Card Available!");
         return;
       }
-    }
     cards.push({id: this.state.nextId, text: "", description: "", date: format_date(Date())});
     this.setState({
       cards: cards,
@@ -55,24 +54,22 @@ class App extends Component {
   };
 
   setTitle = (text, id) => {
-    let cards = this.state.cards.slice();
-    for(let card of cards) {
-      if (card.id === id) {
+    let cards = this.state.cards;
+    cards.forEach(function(card){
+      if(card.id===id)
         card.text = text;
-      }
-    }
+    });
     this.setState({
       cards
     });
   }
 
   setDesc = (desc, id) => {
-    let cards = this.state.cards.slice();
-    for(let card of cards){
-      if (card.id === id) {
+    let cards = this.state.cards;
+    cards.forEach(function(card){
+      if(card.id===id)
         card.description = desc;
-      }
-    }
+    });
     this.setState({
       cards
     });
@@ -86,16 +83,14 @@ class App extends Component {
 
   render() {
     let filteredTodos;
-    if(this.state.date == null){
+    if(this.state.date == null)
       filteredTodos = this.state.cards;
-    }
-    else{
+    else
       filteredTodos = this.state.cards.filter(
       (card) => {
           return card.date === this.state.date;
         }
       );
-    }
     
     return (
       <div className="App">

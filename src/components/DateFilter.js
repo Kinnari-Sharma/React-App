@@ -19,21 +19,13 @@ export default class DateFilter extends React.Component {
    this.props.getDate(format_date(date));
   }
 
-  clearDate = () => {
-    alert("Hi");
-    this.datepicker.clear();
-    return true;
-  }
-
-
 	render() {
 		return(
 			<DatePicker
 		  	selected={this.state.startDate}
-	  		onChange={this.handleChange }
+	  		onChange={this.handleChange}
 	  		dateFormat="DD/MM/YYYY"
 	  		isClearable={true}
-        // onClearClick={this.clearDate}
 	  		placeholderText="Date Filter"
 	  		className = "date-filter"
         clearButtonTitle = "Clear"
