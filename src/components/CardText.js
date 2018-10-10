@@ -7,10 +7,10 @@ export default class CardText extends React.Component{
     this.state = {
       text: this.props.text
     }
-    this.handleChange = this.handleChange.bind(this);
+    // this.handleChange = this.handleChange.bind(this);
   }
 
-  handleChange(e) {
+  handleChange = (e) => {
     this.setState({ text: e.target.value });
     this.props.setTitle(e.target.value, this.props.id);
   }

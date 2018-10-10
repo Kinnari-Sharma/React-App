@@ -102,20 +102,39 @@ hr{
 	color: inherit;
 }
 
-.date-filter{
-	margin-left: 20%;
+#date-filter{
 	width: 120px;
-	padding: 10px 10px 10px 0px; 
+	font-size: 14px;
+	padding: 10px 10px 10px 0px;
 	border-radius: 20px;
 	text-align: center;
 	cursor: pointer;
-	border:1px solid white;
-	background-color: #4a82dd;
-	
+	background-color: #4a82dd;	
+}
+.SingleDatePickerInput{
+	background-color: transparent;
+	margin-left: 5px;
+}
+.DateInput{
+	background-color: transparent;
+}
+.SingleDatePickerInput__withBorder{
+	border: none;
+}
+.SingleDatePickerInput_clearDate__small{
+	padding: 3px;
 }
 
-.date-filter:hover{
-  background-color: #4286f4;	
+.SingleDatePickerInput_clearDate__small:hover{
+	background-color: #4a6ea8;
+}
+
+.SingleDatePickerInput_clearDate_svg__small{
+	height: 10px;
+	fill: #283033;
+}
+#date-filter:hover{
+  background-color: #4286f4;
 }
 
 
@@ -123,8 +142,4 @@ hr{
 	height: 160px;
 	width: 160px;
 	font-size: 12px;
-}
-
-.react-datepicker__header{
-	font-size: 11px;	
 }

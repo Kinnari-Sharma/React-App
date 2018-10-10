@@ -7,10 +7,10 @@ export default class CardDesc extends React.Component{
 		this.state = {
 			description: this.props.desc
 		}
-		this.handleChange = this.handleChange.bind(this);
+		// this.handleChange = this.handleChange.bind(this);
 	}
 
-	handleChange(e) {
+	handleChange = (e) => {
 		this.setState({ description: e.target.value });
 		this.props.setDesc(e.target.value, this.props.id);
 	}
