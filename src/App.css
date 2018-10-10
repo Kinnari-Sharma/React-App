@@ -106,6 +106,7 @@ hr{
 	width: 120px;
 	font-size: 14px;
 	padding: 10px 10px 10px 0px;
+	font-weight: normal;
 	border-radius: 20px;
 	text-align: center;
 	cursor: pointer;
